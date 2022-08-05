@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>数据双向绑定的原理及实现</title>
+  <!-- https://www.bilibili.com/video/BV1934y1a7MN/?spm_id_from=333.788.recommend_more_video.4&vd_source=31c1a5734f4159af70fc95ddcadeffd8 -->
+  <script src="./dvue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <span>Name: {{ name }}</span>
+    <br>
+    <input type="text" v-model="name">
+    <br>
+    <span>More: {{ more.info }}</span>
+    <br>
+    <input type="text" v-model="more.info">
+  </div>
+  <script>
+    const vm = new DVue({
+      el: '#app',
+      data: {
+        name: 'Dean Hiroshi',
+        more: {
+          info: 'Fuck 996',
+          age: null,
+          location: undefined
+        }
+      }
+    })
+  </script>
+</body>
+</html>
