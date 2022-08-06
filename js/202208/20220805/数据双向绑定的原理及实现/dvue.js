@@ -68,6 +68,7 @@ function Compile(element, vm) {
           .reduce((prev, cur) => prev[cur], vm.$data)
         // console.log('value:', value)
         // console.log('nodeValue old:', node.nodeValue)
+        // codes below are used to render data to view
         node.nodeValue = tempValue.replace(pattern, value)
         new Watcher(vm, result_regex[1], (newValue) => {
           node.nodeValue = tempValue.replace(pattern, newValue)
