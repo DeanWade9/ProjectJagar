@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>vue响应式原理20220806</title>
+    <script src="./jVue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <span>Name: {{ name }}</span>
+      <br />
+      <input type="text" j-model="name" />
+      <br />
+      <span>gender: {{ info.gender }}</span>
+      <br />
+      <input type="text" j-model="info.gender" />
+    </div>
+    <script>
+      const vm = new jVue({
+        el: '#app',
+        data: {
+          name: 'Amanda Jing',
+          info: {
+            gender: 'female',
+            age: 39,
+            a: null,
+            b: undefined
+          }
+        }
+      })
+    </script>
+  </body>
+</html>
