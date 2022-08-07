@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>reactive system in vue demo</title>
+    <script src="./DeanVue.js"></script>
+  </head>
+  <body>
+    <div id="demo">
+      <span>Name: {{ name }}</span>
+      <br />
+      <input type="text" d-model="name" />
+      <br />
+      <span>location: {{ info.location }}</span>
+      <br />
+      <input type="text" d-model="info.location" />
+    </div>
+    <script>
+      const vm = new DeanVue({
+        el: '#demo',
+        data: {
+          name: 'dean hiroshi',
+          info: {
+            gender: 'male',
+            age: null,
+            location: 'hefei',
+            skill: undefined
+          }
+        }
+      })
+    </script>
+  </body>
+</html>
