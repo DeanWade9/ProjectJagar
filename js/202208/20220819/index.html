@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .custom-context-menu {
+      position: absolute;
+      background: aliceblue;
+      margin: 0;
+      padding: 0;
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+    .custom-context-menu li {
+      list-style: none;
+    }
+    .custom-context-menu li:hover {
+      background: aquamarine;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+  <script>
+    // 单例模式获取菜单实例
+    const ContextMenu = function (options) {
+      let instance
+
+      function createMenu() {
+        const ul = document.createElement('ul')
+        ul.classList.add('custom-context-menu')
+        const { menus } = options
+        if (menus && menus.length > 0) {
+          for (let menu of menus) {
+            const li = document.createElement('li')
+            li.textContent = menu.name
+            li.onclick = menu.onClick
+            ul.appendChild(li)
+          }
+        }
+        console.dir(ul, 111)
+        const body = document.querySelector('body')
+        body.appendChild(ul)
+        return ul
+      }
+
+      return {
+        getInstance: function () {
+          if (!instance) {
+            instance = createMenu()
+          }
+          return instance
+        }
+      }
+    }
+
+    // 配置
+    const options = {
+      menus: [
+        {
+          name: "custom menu 1",
+          onClick: function (e) {
+            console.log("menu1 clicked")
+          }
+        },
+        {
+          name: "custom menu 2",
+          onClick: function (e) {
+            console.log("menu2 clicked")
+          }
+        },
+        {
+          name: "custom menu 3",
+          onClick: function (e) {
+            console.log("menu3 clicked")
+          }
+        }
+      ]
+    }
+
+    // 初始化菜单
+    const menuInit = ContextMenu(options)
+
+    // 显示菜单
+    function showMenu(e) {
+      console.log(e)
+      const menu = menuInit.getInstance()
+      menu.style.top = `${e.clientY}px`
+      menu.style.left = `${e.clientX}px`
+      menu.style.display = 'block'
+      console.dir(menu)
+    }
+
+    // 隐藏菜单
+    function hideMenu(e) {
+      const menu = menuInit.getInstance()
+      menu.style.display = 'none'
+    }
+
+    document.addEventListener('contextmenu', e => {
+      e.preventDefault()
+      showMenu(e)
+    })
+
+    document.addEventListener('click', hideMenu)
+  </script>
+</body>
+
+</html>
